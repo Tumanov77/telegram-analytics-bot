@@ -522,6 +522,9 @@ class TelegramAnalyticsBot:
         try:
             logger.info("Запуск Telegram бота...")
             
+            # Добавляем обработчик ошибок для конфликтов
+            self.application.add_error_handler(self._error_handler)
+            
             # Запускаем бота в синхронном режиме
             self.application.run_polling()
             
@@ -530,6 +533,15 @@ class TelegramAnalyticsBot:
         except Exception as e:
             logger.error(f"Ошибка запуска бота: {e}")
             raise
+    
+    async def _error_handler(self, update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Обработчик ошибок"""
+        logger.error(f"Ошибка в обработке обновления: {context.error}")
+        
+        # Игнорируем конфликты - они решаются автоматически
+        if "Conflict" in str(context.error):
+            logger.info("Игнорируем конфликт - Telegram API автоматически решит проблему")
+            return
 
 
 # Функция для запуска бота
