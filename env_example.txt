@@ -1,0 +1,27 @@
+# Telegram Bot Configuration
+TELEGRAM_BOT_TOKEN=your_telegram_bot_token_here
+
+# OpenAI Configuration
+OPENAI_API_KEY=your_openai_api_key_here
+
+# Google APIs Configuration
+GOOGLE_CREDENTIALS_FILE=credentials.json
+
+# Target User Configuration
+TARGET_USER_ID=your_telegram_user_id_here
+
+# Optional: GPT Model Configuration
+GPT_MODEL=gpt-4o
+
+# Optional: Logging Configuration
+LOG_LEVEL=INFO
+LOG_FILE=telegram_analytics.log
+
+# Optional: Database Configuration
+DATABASE_PATH=telegram_analytics.db
+
+# Optional: Scheduler Configuration
+ANALYSIS_HOUR=0
+ANALYSIS_MINUTE=0
+ARCHIVE_HOUR=23
+ARCHIVE_MINUTE=0

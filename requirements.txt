@@ -1,0 +1,25 @@
+# Telegram Bot API
+python-telegram-bot==20.7
+
+# OpenAI API
+openai==1.102.0
+
+# Google APIs
+google-auth==2.23.4
+google-auth-oauthlib==1.1.0
+google-auth-httplib2==0.1.1
+google-api-python-client==2.108.0
+
+# Планировщик задач
+APScheduler==3.10.4
+
+# Управление переменными окружения
+python-dotenv==1.0.0
+
+# Асинхронность
+asyncio-throttle==1.0.2
+aiofiles==24.1.0
+
+# Логирование и утилиты
+colorama==0.4.6
+tqdm==4.67.1
