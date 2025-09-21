@@ -537,11 +537,16 @@ def main():
     """Главная функция для запуска бота"""
     import os
     
-    # Получаем настройки из переменных окружения (для Heroku)
+    # Получаем настройки из переменных окружения (для Railway)
     bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
     openai_api_key = os.getenv("OPENAI_API_KEY")
     google_credentials_file = os.getenv("GOOGLE_CREDENTIALS_FILE")
     target_user_id = os.getenv("TARGET_USER_ID")
+    
+    # Логируем полученные переменные (без значений для безопасности)
+    logger.info(f"TELEGRAM_BOT_TOKEN: {'SET' if bot_token else 'NOT SET'}")
+    logger.info(f"OPENAI_API_KEY: {'SET' if openai_api_key else 'NOT SET'}")
+    logger.info(f"TARGET_USER_ID: {target_user_id}")
     
     # Если переменные не заданы, пробуем загрузить из config.py
     if not bot_token:
@@ -551,11 +556,14 @@ def main():
             openai_api_key = OPENAI_API_KEY
             google_credentials_file = GOOGLE_CREDENTIALS_FILE
             target_user_id = TARGET_USER_ID
-        except:
-            pass
+            logger.info("Переменные загружены из config.py")
+        except Exception as e:
+            logger.error(f"Ошибка загрузки из config.py: {e}")
     
     if not bot_token or not openai_api_key:
         logger.error("Не заданы обязательные переменные окружения")
+        logger.error(f"bot_token: {'SET' if bot_token else 'NOT SET'}")
+        logger.error(f"openai_api_key: {'SET' if openai_api_key else 'NOT SET'}")
         return
     
     # Создаем и запускаем бота
